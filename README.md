@@ -36,7 +36,7 @@ All original form fields were captured and improved — not just copied, but enh
 
 ## 🙋‍♂️ Questions? Feedback?
 
-Feel free to reach out to me at [your.email@example.com] or ask in class!
+Feel free to reach out to me at [issahsaidi265@gmail.com] 
 
 ---
 
