@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Patient Information Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    .form-container { max-width: 800px; margin: 0 auto; border: 1px solid #ccc; padding: 20px; }
+    fieldset { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; }
+    legend { font-weight: bold; font-size: 1.1em; }
+    label { display: block; margin-bottom: 5px; }
+    input, textarea, select { width: 100%; max-width: 300px; padding: 8px; margin-bottom: 10px; }
+    .inline-group { display: flex; gap: 15px; flex-wrap: wrap; }
+    .inline-group label { margin-bottom: 0; }
+    .inline-group input, .inline-group select { width: auto; }
+    .checkbox-group, .radio-group { display: flex; gap: 15px; flex-wrap: wrap; }
+    .checkbox-group label, .radio-group label { display: inline-flex; align-items: center; gap: 5px; }
+    .checkbox-group input, .radio-group input { width: auto; }
+    .required { color: red; }
+    button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .signature-section { display: flex; justify-content: space-between; gap: 20px; }
+    .signature-section input { width: 45%; }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Patient Information Form</h2>
+
+    <!-- Patient Information -->
+    <fieldset>
+      <legend>Patient Information</legend>
+      <div class="inline-group">
+        <label>Name: <input type="text" name="patient_name" required></label>
+        <label>DOB (MM/DD/YYYY): <input type="text" name="dob" placeholder="MM/DD/YYYY" required></label>
+      </div>
+      <div class="inline-group">
+        <label>Gender: 
+          <span class="radio-group">
+            <label><input type="radio" name="gender" value="Male" required> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+            <label><input type="radio" name="gender" value="Other"> Other</label>
+          </span>
+        </label>
+        <label>Preferred Pronouns: 
+          <span class="radio-group">
+            <label><input type="radio" name="pronouns" value="He/Him"> He/Him</label>
+            <label><input type="radio" name="pronouns" value="She/Her"> She/Her</label>
+            <label><input type="radio" name="pronouns" value="They/Them"> They/Them</label>
+            <label><input type="radio" name="pronouns" value="Other"> Other: <input type="text" name="pronouns_other" size="10"></label>
+          </span>
+        </label>
+      </div>
+      <div class="inline-group">
+        <label>Address: <input type="text" name="address" required></label>
+        <label>City: <input type="text" name="city" required></label>
+      </div>
+      <div class="inline-group">
+        <label>State: <input type="text" name="state" required></label>
+        <label>Zip: <input type="text" name="zip" required></label>
+        <label>Phone: <input type="tel" name="phone" required></label>
+      </div>
+      <div class="inline-group">
+        <label>Email: <input type="email" name="email" required></label>
+        <label>Preferred Contact Method: 
+          <span class="radio-group">
+            <label><input type="radio" name="contact_method" value="Phone" required> Phone</label>
+            <label><input type="radio" name="contact_method" value="Email"> Email</label>
+            <label><input type="radio" name="contact_method" value="Text"> Text</label>
+          </span>
+        </label>
+      </div>
+      <div class="inline-group">
+        <label>Emergency Contact Name: <input type="text" name="emergency_contact" required></label>
+        <label>Phone: <input type="tel" name="emergency_phone" required></label>
+      </div>
+      <label>Relationship to Patient: <input type="text" name="emergency_relationship" required></label>
+    </fieldset>
+
+    <!-- Insurance Information -->
+    <fieldset>
+      <legend>Insurance Information (if applicable)</legend>
+      <div class="inline-group">
+        <label>Provider: <input type="text" name="insurance_provider"></label>
+        <label>Policy number: <input type="text" name="policy_number"></label>
+      </div>
+      <div class="inline-group">
+        <label>Group Number: <input type="text" name="group_number"></label>
+        <label>Policyholder Name: <input type="text" name="policyholder_name"></label>
+      </div>
+      <label>Relationship to Patient: 
+        <span class="radio-group">
+          <label><input type="radio" name="policyholder_relationship" value="Self"> Self</label>
+          <label><input type="radio" name="policyholder_relationship" value="Spouse"> Spouse</label>
+          <label><input type="radio" name="policyholder_relationship" value="Parent"> Parent</label>
+          <label><input type="radio" name="policyholder_relationship" value="Other"> Other: <input type="text" name="policyholder_relationship_other" size="10"></label>
+        </span>
+      </label>
+    </fieldset>
+
+    <!-- Reason for Visit -->
+    <fieldset>
+      <legend>Reason for Visit</legend>
+      <label>Primary Reason for Visit: <textarea name="primary_reason" rows="3" required></textarea></label>
+      <div class="inline-group">
+        <label>How long have you had this issue? <input type="text" name="issue_duration" required></label>
+        <label>Have you been treated for this before? 
+          <span class="radio-group">
+            <label><input type="radio" name="treated_before" value="Yes" required> Yes</label>
+            <label><input type="radio" name="treated_before" value="No"> No</label>
+          </span>
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- Medical History Summary -->
+    <fieldset>
+      <legend>Medical History Summary</legend>
+      <label>Do you have any of the following conditions? (Check all that apply)
+        <span class="checkbox-group">
+          <label><input type="checkbox" name="conditions[]" value="Diabetes"> Diabetes</label>
+          <label><input type="checkbox" name="conditions[]" value="Hypertension"> Hypertension</label>
+          <label><input type="checkbox" name="conditions[]" value="Heart Disease"> Heart Disease</label>
+          <label><input type="checkbox" name="conditions[]" value="Asthma"> Asthma</label>
+          <label><input type="checkbox" name="conditions[]" value="Cancer"> Cancer</label>
+          <label><input type="checkbox" name="conditions[]" value="Stroke"> Stroke</label>
+          <label><input type="checkbox" name="conditions[]" value="Other"> Other: <input type="text" name="conditions_other" size="10"></label>
+        </span>
+      </label>
+
+      <div class="inline-group">
+        <label>Are you currently taking any medications? 
+          <span class="radio-group">
+            <label><input type="radio" name="taking_meds" value="Yes" required> Yes</label>
+            <label><input type="radio" name="taking_meds" value="No"> No</label>
+          </span>
+        </label>
+        <label>If yes, list medications: <textarea name="medications" rows="2"></textarea></label>
+      </div>
+
+      <div class="inline-group">
+        <label>Do you have any allergies? 
+          <span class="radio-group">
+            <label><input type="radio" name="allergies" value="Yes" required> Yes</label>
+            <label><input type="radio" name="allergies" value="No"> No</label>
+          </span>
+        </label>
+        <label>If yes, list allergies: <textarea name="allergy_list" rows="2"></textarea></label>
+      </div>
+
+      <div class="inline-group">
+        <label>Have you had any surgeries or hospitalizations? 
+          <span class="radio-group">
+            <label><input type="radio" name="surgeries" value="Yes" required> Yes</label>
+            <label><input type="radio" name="surgeries" value="No"> No</label>
+          </span>
+        </label>
+        <label>If yes, list procedures and dates: <textarea name="surgery_details" rows="2"></textarea></label>
+      </div>
+    </fieldset>
+
+    <!-- Lifestyle & Social History -->
+    <fieldset>
+      <legend>Lifestyle & Social History</legend>
+      <div class="inline-group">
+        <label>Do you smoke or use tobacco products? 
+          <span class="radio-group">
+            <label><input type="radio" name="tobacco" value="Yes" required> Yes</label>
+            <label><input type="radio" name="tobacco" value="No"> No</label>
+            <label><input type="radio" name="tobacco" value="Former Smoker"> Former Smoker</label>
+          </span>
+        </label>
+      </div>
+      <div class="inline-group">
+        <label>Do you consume alcohol? 
+          <span class="radio-group">
+            <label><input type="radio" name="alcohol" value="Yes" required> Yes</label>
+            <label><input type="radio" name="alcohol" value="No"> No</label>
+            <label><input type="radio" name="alcohol" value="Occasionally"> Occasionally</label>
+          </span>
+        </label>
+      </div>
+      <div class="inline-group">
+        <label>Do you use recreational drugs? 
+          <span class="radio-group">
+            <label><input type="radio" name="drugs" value="Yes" required> Yes</label>
+            <label><input type="radio" name="drugs" value="No"> No</label>
+          </span>
+        </label>
+      </div>
+      <label>Occupation: <input type="text" name="occupation"></label>
+      <div class="inline-group">
+        <label>Do you have any concerns about access to healthcare, transportation, or financial barriers? 
+          <span class="radio-group">
+            <label><input type="radio" name="barriers" value="Yes" required> Yes</label>
+            <label><input type="radio" name="barriers" value="No"> No</label>
+          </span>
+        </label>
+      </div>
+      <label>If yes, please describe: <textarea name="barrier_description" rows="3"></textarea></label>
+    </fieldset>
+
+    <!-- Pharmacy Information -->
+    <fieldset>
+      <legend>Pharmacy Information</legend>
+      <div class="inline-group">
+        <label>Preferred Pharmacy Name: <input type="text" name="pharmacy_name" required></label>
+        <label>Phone Number: <input type="tel" name="pharmacy_phone" required></label>
+      </div>
+      <label>Address: <input type="text" name="pharmacy_address" required></label>
+    </fieldset>
+
+    <!-- Consent & Signature -->
+    <fieldset>
+      <legend>Consent & Signature</legend>
+      <label>
+        <input type="checkbox" name="consent" required> I confirm that the information provided is accurate to the best of my knowledge.
+      </label>
+      <div class="signature-section">
+        <label>Signature: <input type="text" name="signature" required></label>
+        <label>Date: <input type="date" name="signature_date" required></label>
+      </div>
+    </fieldset>
+
+    <button type="submit">Submit Form</button>
+  </div>
+</body>
+</html>
